@@ -1,0 +1,31 @@
+syntax = "proto3";
+// 用户服务
+package proto;
+
+import "google/api/annotations.proto";
+
+// 用户服务
+service User {
+    rpc Louder (UserRequest) returns (UserResponse) {
+        option (google.api.http) = {
+            post: "/login"
+            body: "*"
+        };
+    }
+}
+
+message UserRequest {
+    // 登录账号
+    string Name = 1;
+    // 登录密码
+    int32 Password = 2;
+    // 登录验证码
+    int32 Code = 3;
+    // 验证码ID
+    int32 Codeid = 4;
+}
+
+message UserResponse {
+    // 登录成功凭证
+    string JWT = 1;
+}
